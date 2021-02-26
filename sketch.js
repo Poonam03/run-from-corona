@@ -157,6 +157,6 @@ function sanitizer(){
            Sanitizer.scale = 0.5;
            Sanitizer.lifetime = 50;
            sanitizerGroup.add(Sanitizer);
-       }
+       
     
 }
