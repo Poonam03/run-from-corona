@@ -128,6 +128,10 @@ if(gameState === "play"){
 
 
 drawSprites();
+   fill("black")
+  textSize(20)
+  text("Turns: "+turn,doreamon.x-180,50)
+  text("Time: "+m,doreamon.x-300,50)
 }
 function reset()
 {
