@@ -18,12 +18,14 @@ coronavirusimage=loadImage("coronavirus.png");
 sanitizerimage=loadImage("sanitizer.png");
 //doctorimage=loadImage("doctor.png");
 doreamonAnimation=loadAnimation("image1.png","image2.png","image1.png")
+oreamon_standingImg=loadAnimation("image1.png")
 restartImg=loadImage("restart.png")
 }
 
 function setup(){
 createCanvas(windowWidth-20,windowHeight-30)
 doreamon = createSprite(100,height-100,10,10);
+doreamon.addAnimation("standing",oreamon_standingImg);
 doreamon.addAnimation("running",doreamonAnimation);
 ground = createSprite(0,height-100,width*4,10);
 ground.visibility=false;
@@ -54,11 +56,19 @@ if(gameState === "play"){
         {
           doreamon.x=doreamon.x-5;
           distance++
+          doreamon.changeAnimation("running",doreamonAnimation);
+        }
+        else{
+          doreamon.changeAnimation("standing",doreamon_standingImg);
         }
       if(keyIsDown(RIGHT_ARROW))  
       {
       doreamon.x=doreamon.x+5;
       distance--
+      doreamon.changeAnimation("running",doreamonAnimation);
+     }
+     else{
+      doreamon.changeAnimation("standing",doreamon_standingImg);
      }
     
      if(keyDown("space") )
@@ -128,7 +138,7 @@ if(gameState === "play"){
 
 
 drawSprites();
-   fill("black")
+fill("black")
   textSize(20)
   text("Turns: "+turn,doreamon.x-180,50)
   text("Time: "+m,doreamon.x-300,50)
