@@ -13,17 +13,18 @@ var m=120;
 var turn =3;
 
 function preload(){
-backgroundimage=loadImage("background.jpg");
+backgroundimage=loadImage("bg1.png");
 coronavirusimage=loadImage("coronavirus.png");
 sanitizerimage=loadImage("sanitizer.png");
-doctorimage=loadImage("doctor.png");
-doreamonAnimation=loadAnimation("image 1.png,image 2.png,image 3.png,image 4.png,image 5.png,image 6.png")
+//doctorimage=loadImage("doctor.png");
+doreamonAnimation=loadAnimation("image1.png","image2.png","image1.png")
+restartImg=loadImage("restart.png")
 }
 
 function setup(){
 createCanvas(windowWidth-20,windowHeight-30)
 doreamon = createSprite(100,height-100,10,10);
-doreamon.addAnimation("running",doramonAnimation);
+doreamon.addAnimation("running",doreamonAnimation);
 ground = createSprite(0,height-100,width*4,10);
 ground.visibility=false;
 obstacleGroup=createGroup();
@@ -36,7 +37,7 @@ restart=createSprite(width/2,height/2)
 }
 
 function draw(){
-background(0);
+background(backgroundimage);
 
 if(gameState === "play"){
    if (frameCount % round(frameRate()) === 0 && m > -1) {
@@ -46,17 +47,17 @@ if(gameState === "play"){
       }
       camera.position.x=doreamon.x+350;
       camera.position.y=windowHeight/2;
-      ground.x=doremon.x
+      ground.x=doreamon.x
       doreamon.collide(ground);
       console.log(distance);
       if(keyIsDown(LEFT_ARROW))  
         {
-          doreamon.x=doreamon.x+5;
+          doreamon.x=doreamon.x-5;
           distance++
         }
       if(keyIsDown(RIGHT_ARROW))  
       {
-      doreamon.x=doreamon.x-5;
+      doreamon.x=doreamon.x+5;
       distance--
      }
     
@@ -86,15 +87,15 @@ if(gameState === "play"){
       turn=turn-1
       fill("black")
       textSize(30)
-      text("GAME OVER",doremon.x-100,height-200);
-      restart.x=doremon.x
+      text("GAME OVER",doreamon.x-100,height-200);
+      restart.x=doreamon.x
       restart.visible=true
     }
   
   if(distance>=1000)
     {
       doctor=createSprite(doreamon.x+250,doreamon.y-30);
-      doctor.addImage(doctorimage);  
+     // doctor.addImage(doctorimage);  
       doctor.sclae=0.5; 
       fill("black")
       textSize(30)
@@ -106,8 +107,8 @@ if(gameState === "play"){
       gameState="end"
       fill("black")
       textSize(15)
-      text("GAME OVER!!!",doremon.x-100,height-200);
-      text("BETTER LUCK NEXT TIME!!!",doremon.x-100,height-250);
+      text("GAME OVER!!!",doreamon.x-100,height-200);
+      text("BETTER LUCK NEXT TIME!!!",doreamon.x-100,height-250);
     }
  }
   
@@ -131,7 +132,7 @@ drawSprites();
 function reset()
 {
   gameState="play";
-  doremon.changeAnimation("standing",doremon_standingImg);
+  doreamon.changeAnimation("standing",doreamon_standingImg);
   restart.visible=false
   totalCoins=0
  
@@ -140,7 +141,7 @@ function reset()
 
 function obstacle(){
     
-       var Obstacle= createSprite(doremon.x+400,height-230,10,40);
+       var Obstacle= createSprite(doreamon.x+400,height-230,10,40);
        Obstacle.addImage(coronavirusimage);
        
         Obstacle.scale = 0.09;
@@ -152,7 +153,7 @@ function obstacle(){
 
 function sanitizer(){
     
-           var Sanitizer = createSprite(doremon.x+200,height-230,10,40);
+           var Sanitizer = createSprite(doreamon.x+200,height-230,10,40);
            Sanitizer.addImage(sanitizerimage);
            Sanitizer.scale = 0.5;
            Sanitizer.lifetime = 50;
