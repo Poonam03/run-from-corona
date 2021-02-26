@@ -149,7 +149,7 @@ function obstacle(){
        Obstacle.addImage(coronavirusimage);
        
         Obstacle.scale = 0.09;
-        Obstacle.lifetime = 50;
+        Obstacle.lifetime = 100;
         obstacleGroup.add(Obstacle)
     
 }
@@ -160,7 +160,7 @@ function sanitizer(){
            var Sanitizer = createSprite(doreamon.x+200,height-230,10,40);
            Sanitizer.addImage(sanitizerimage);
            Sanitizer.scale = 0.5;
-           Sanitizer.lifetime = 50;
+           Sanitizer.lifetime = 100;
            sanitizerGroup.add(Sanitizer);
        
     
